@@ -22,7 +22,7 @@ A backend microservice for tracking personal gym records (PRs), built with **Fas
 
 1. Clone the repository:
 ```bash
-git clone 
+git clone https://github.com/EASS-HIT-PART-A-2025-CLASS-VIII/gym-pr-tracker.git
 cd gym-pr-tracker
 ```
 2. Initialize the environment and install dependencies using uv:
