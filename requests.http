@@ -1,0 +1,26 @@
+### 1. Create a new PR (Should return 201)
+POST http://127.0.0.1:8000/prs
+Content-Type: application/json
+
+{
+  "exercise": "Bench Press",
+  "weight": 100,
+  "reps": 5
+}
+
+### 2. Get all PRs (Should return a list)
+GET http://127.0.0.1:8000/prs
+
+### 3. Update the PR weight only (Should return 200)
+PUT http://127.0.0.1:8000/prs/1
+Content-Type: application/json
+
+{
+  "weight": 105
+}
+
+### 4. Delete the PR (Should return 204)
+DELETE http://127.0.0.1:8000/prs/1
+
+### 5. Verify Deletion (Should return 404)
+GET http://127.0.0.1:8000/prs/1

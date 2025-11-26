@@ -1,0 +1,14 @@
+# Ignore git 
+.git
+
+# Ignore local virtual environment 
+.venv
+
+# Ignore Python cache files
+__pycache__
+*.pyc
+
+# Ignore files not needed in production
+README.md
+requests.http
+tests
