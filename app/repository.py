@@ -1,5 +1,6 @@
 from datetime import datetime
-from models import PR, PRCreate, PRUpdate
+from .models import PR, PRCreate, PRUpdate
+
 
 class PRRepository:
     def __init__(self):
@@ -9,9 +10,7 @@ class PRRepository:
 
     def create(self, pr_data: PRCreate) -> PR:
         new_pr = PR(
-            id=self.current_id,
-            performed_at=datetime.now(),
-            **pr_data.model_dump()
+            id=self.current_id, performed_at=datetime.now(), **pr_data.model_dump()
         )
         self.storage[self.current_id] = new_pr
         self.current_id += 1
@@ -26,13 +25,13 @@ class PRRepository:
     def update(self, pr_id: int, update_data: PRUpdate) -> PR | None:
         if pr_id not in self.storage:
             return None
-        
+
         current_pr = self.storage[pr_id]
         # Smart update: only changes fields that were actually sent
         updated_data = current_pr.model_copy(
             update=update_data.model_dump(exclude_unset=True)
         )
-        
+
         self.storage[pr_id] = updated_data
         return updated_data
 

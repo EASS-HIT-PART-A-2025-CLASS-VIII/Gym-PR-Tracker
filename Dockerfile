@@ -21,4 +21,4 @@ EXPOSE 8000
 
 # 8. Command to run the application
 # We use host 0.0.0.0 to allow external access to the container
-CMD ["uv", "run", "fastapi", "run", "main.py", "--port", "8000", "--host", "0.0.0.0"]
+CMD ["uv", "run", "fastapi", "run", "app/main.py", "--port", "8000", "--host", "0.0.0.0"]
