@@ -37,7 +37,7 @@ uv sync
 Start the development server:
 
 ```bash
-uv run fastapi dev main.py
+uv run fastapi dev app/main.py
 ```
 
 The API will be available at:
