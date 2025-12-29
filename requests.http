@@ -5,18 +5,20 @@ Content-Type: application/json
 {
   "exercise": "Bench Press",
   "weight": 100,
-  "reps": 5
+  "reps": 5,
+  "muscle_group": "Chest"
 }
 
 ### 2. Get all PRs (Should return a list)
 GET http://127.0.0.1:8000/prs
 
-### 3. Update the PR weight only (Should return 200)
+### 3. Update the PR weight and Reps (Should return 200)
 PUT http://127.0.0.1:8000/prs/1
 Content-Type: application/json
 
 {
-  "weight": 105
+  "weight": 105,
+  "reps": 6
 }
 
 ### 4. Delete the PR (Should return 204)

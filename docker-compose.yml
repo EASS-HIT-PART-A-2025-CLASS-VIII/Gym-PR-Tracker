@@ -1,0 +1,22 @@
+services:
+
+  # Backend
+  backend:
+    build: .
+    container_name: PR_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+
+  # Frontend
+  frontend:
+    build: .
+    container_name: PR_frontend
+    command: ["uv", "run", "streamlit", "run", "frontend/app.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://backend:8000
+    depends_on:
+      - backend
