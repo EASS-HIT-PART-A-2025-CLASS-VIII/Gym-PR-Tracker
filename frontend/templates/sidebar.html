@@ -1,0 +1,32 @@
+<!-- Glass Sidebar -->
+<aside
+    class="w-20 lg:w-64 glass border-r border-white/5 flex flex-col justify-between py-6 lg:py-8 z-20 transition-all duration-300">
+    <!-- Logo -->
+    <div class="flex items-center justify-center lg:justify-start lg:px-6 mb-10">
+        <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-green-600 flex items-center justify-center shadow-lg shadow-primary/20">
+            <span class="material-symbols-outlined text-background-dark text-2xl font-bold">fitness_center</span>
+        </div>
+        <span class="hidden lg:block ml-3 font-heading font-bold text-xl tracking-tight">PR Tracker</span>
+    </div>
+
+    <!-- Nav -->
+    <nav class="flex-1 space-y-2 px-2 lg:px-4">
+        <a href="#" onclick="switchView('dashboard')" id="nav-dashboard"
+            class="nav-item flex items-center gap-4 px-6 py-4 text-gray-400 hover:bg-white/5 hover:text-white transition-colors border-r-2 border-transparent hover:border-primary">
+            <span class="material-symbols-outlined text-xl">grid_view</span>
+            <span class="font-bold text-sm tracking-wide">Dashboard</span>
+        </a>
+        <a href="#" onclick="switchView('history')" id="nav-history"
+            class="nav-item flex items-center gap-4 px-6 py-4 text-gray-400 hover:bg-white/5 hover:text-white transition-colors border-r-2 border-transparent hover:border-primary">
+            <span class="material-symbols-outlined text-xl">history</span>
+            <span class="font-bold text-sm tracking-wide">History</span>
+        </a>
+        <a href="#" onclick="switchView('milestones')" id="nav-milestones"
+            class="nav-item flex items-center gap-4 px-6 py-4 text-gray-400 hover:bg-white/5 hover:text-white transition-colors border-r-2 border-transparent hover:border-primary">
+            <span class="material-symbols-outlined text-xl">emoji_events</span>
+            <span class="font-bold text-sm tracking-wide">Milestones</span>
+        </a>
+
+    </nav>
+</aside>

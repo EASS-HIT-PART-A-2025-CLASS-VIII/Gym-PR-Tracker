@@ -1,0 +1,93 @@
+<!-- ANALYTICS VIEW -->
+<section id="analytics-view" class="hidden space-y-8 pb-20 animate-fade-in-up">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+            <h2 class="text-3xl font-heading font-bold text-white">Monthly Focus</h2>
+            <p class="text-gray-400 text-sm mt-1">Analyze your training distribution history.</p>
+        </div>
+        <div class="relative z-50">
+            <!-- Trigger Button -->
+            <button id="custom-month-trigger"
+                class="flex items-center gap-3 bg-surface-dark border border-white/10 rounded-xl px-4 py-2.5 text-white hover:bg-white/5 hover:border-primary/50 transition-all group">
+                <span
+                    class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors text-xl">calendar_month</span>
+                <span id="custom-month-label" class="font-bold text-sm tracking-wide">Select
+                    Month</span>
+                <span
+                    class="material-symbols-outlined text-gray-400 text-sm group-hover:text-white transition-colors">expand_more</span>
+            </button>
+
+            <!-- Dropdown -->
+            <div id="custom-month-dropdown"
+                class="hidden absolute top-full right-0 mt-3 w-72 bg-[#132018] border border-white/10 rounded-2xl shadow-2xl shadow-black/50 p-5 animate-fade-in-up origin-top-right backdrop-blur-xl">
+
+                <!-- Year Header -->
+                <div class="flex items-center justify-between mb-5 bg-white/5 rounded-xl p-1">
+                    <button id="picker-prev-year"
+                        class="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-lg">chevron_left</span>
+                    </button>
+                    <span id="picker-year-label"
+                        class="text-lg font-bold font-heading text-white tracking-wide">2024</span>
+                    <button id="picker-next-year"
+                        class="p-2 hover:bg-white/10 rounded-lg text-gray-400 hover:text-white transition-colors">
+                        <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    </button>
+                </div>
+
+                <!-- Month Grid -->
+                <div id="picker-month-grid" class="grid grid-cols-3 gap-2">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Chart Card -->
+        <div class="glass-card rounded-3xl p-8 flex flex-col items-center justify-center min-h-[400px]">
+            <h3 class="text-lg font-bold text-white mb-1">Muscle Distribution</h3>
+            <p id="analytics-chart-subtitle" class="text-xs text-gray-400 mb-8 font-medium uppercase">
+                Select Month</p>
+
+            <div class="flex flex-col xl:flex-row items-center justify-center gap-8 xl:gap-12 w-full">
+                <!-- Chart -->
+                <div class="relative w-64 h-64 shrink-0">
+                    <div id="analytics-focus-chart" class="w-full h-full rounded-full"
+                        style="background: conic-gradient(#333 0% 100%); mask-image: radial-gradient(transparent 55%, black 56%); -webkit-mask-image: radial-gradient(transparent 55%, black 56%);">
+                    </div>
+
+                    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                        <span class="text-3xl font-bold text-white" id="analytics-total-prs">0</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-wider font-bold">PRs</span>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div id="analytics-focus-legend" class="space-y-3 w-full max-w-[200px]">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div id="analytics-chart-message" class="mt-6 text-gray-400 text-sm hidden">No data found.
+            </div>
+        </div>
+
+        <!-- Stats Card -->
+        <div class="glass-card rounded-3xl p-8">
+            <h3 class="text-lg font-bold text-white mb-6">Highlights</h3>
+            <div class="space-y-4">
+                <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                    <p class="text-gray-400 text-xs uppercase font-bold mb-1">Top Muscle</p>
+                    <p class="text-xl font-bold text-primary" id="analytics-top-muscle">-</p>
+                </div>
+                <div class="p-4 rounded-xl bg-white/5 border border-white/5">
+                    <p class="text-gray-400 text-xs uppercase font-bold mb-1">Heaviest Lift</p>
+                    <p class="text-xl font-bold text-white" id="analytics-heaviest-lift">-</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,6 @@
 #create my database and tables.
-from app.database import create_db_and_tables
-from app.models import PR 
+from backend.database import create_db_and_tables
+from backend.models import PR 
 
 if __name__ == "__main__":
     print("Manually initializing the database...")

@@ -1,9 +1,12 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException, status
-from app.database import create_db_and_tables
-from app.models import PR, PRCreate, PRUpdate
+from fastapi import FastAPI, HTTPException, status, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
+from backend.database import create_db_and_tables
+from backend.models import PR, PRCreate, PRUpdate
 from .repository import PRRepository
-from fastapi.responses import RedirectResponse
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -19,6 +22,12 @@ app = FastAPI(
 
 # Initialize Repository
 repository = PRRepository()
+
+# Mount Static Files (Serving from 'frontend' folder)
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
+# Initialize Templates
+templates = Jinja2Templates(directory="frontend/templates")
 
 # Endpoints
 
@@ -65,5 +74,6 @@ def delete_pr(pr_id: int):
 
 
 @app.get("/", include_in_schema=False)
-def root():
-    return RedirectResponse(url="/docs")
+def root(request: Request):
+    return templates.TemplateResponse(request=request, name="index.html")
+

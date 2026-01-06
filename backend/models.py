@@ -3,10 +3,10 @@ from datetime import datetime
 from typing import Optional
 
 class PRBase(SQLModel):
-    exercise: str
-    muscle_group: str
-    weight: float
-    reps: int
+    exercise: str = Field(min_length=2)
+    muscle_group: str = "Other"
+    weight: float = Field(gt=0)
+    reps: int = Field(gt=0)
     performed_at: datetime = Field(default_factory=datetime.utcnow)
 
 class PR(PRBase, table=True):

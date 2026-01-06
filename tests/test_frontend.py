@@ -1,103 +1,99 @@
-import sys
-import os
-from streamlit.testing.v1 import AppTest
+import pytest
+import threading
+import time
+import uvicorn
+import re
+from playwright.sync_api import Page, expect
+from backend.main import app
 
-# Path Setup 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../frontend')))
+# --- Fixture to run FastAPI server in background ---
+@pytest.fixture(scope="session", autouse=True)
+def run_server():
+    """Starts the Uvicorn server in a separate thread for the testing session."""
+    def start_server():
+        uvicorn.run(app, host="127.0.0.1", port=8001, log_level="info") # Changed to info to see requests
 
-# Basic Startup Test
-def test_app_starts_correctly():
+    thread = threading.Thread(target=start_server, daemon=True)
+    thread.start()
+    time.sleep(2)
+    yield
 
-    at = AppTest.from_file("frontend/app.py", default_timeout=10)
-    at.run()
+BASE_URL = "http://localhost:8001"
+
+# --- Frontend Tests ---
+
+def test_homepage_loads(page: Page):
+    page.goto(BASE_URL)
+    expect(page).to_have_title("Gym PR Tracker")
+    expect(page.locator("#dashboard-view")).to_be_visible()
+
+def test_navigation(page: Page):
+    page.goto(BASE_URL)
+    page.click("#nav-history")
+    expect(page.locator("#history-view")).not_to_have_class(re.compile("hidden"))
+    page.click("#nav-dashboard")
+    expect(page.locator("#dashboard-view")).not_to_have_class(re.compile("hidden"))
+
+def test_crud_flow_and_filter(page: Page):
+    """
+    Full flow with debug logging
+    """
+    page.on("console", lambda msg: print(f"BROWSER LOG: {msg.text}"))
+
+    unique_weight = "999.9"
+    exercise_name = "Squat"
+
+    page.goto(BASE_URL)
+
+    # 1. CREATE
+    page.click("#btn-log-pr")
+    modal = page.locator("#log-pr-modal")
+    expect(modal).not_to_have_class(re.compile("hidden"))
     
-    if at.exception:
-        print(at.exception)
+    # Wait for animation to settle roughly
+    page.wait_for_timeout(500)
+
+    # Fill Form
+    page.select_option("#exercise", label=exercise_name)
+    page.select_option("#muscle_group", label="Legs")
+    page.fill("#weight", unique_weight)
+    page.fill("#reps", "1")
     
-    assert not at.exception
-    assert "Gym PR Tracker" in at.title[0].value
-
-# Validation Test for short exercise name
-def test_frontend_validation_short_name():
-
-    at = AppTest.from_file("frontend/app.py", default_timeout=10)
-    at.run()
-
-    at.selectbox(key="ex_select").set_value("Other...")
-    at.run() 
-
-    at.text_input(key="custom_ex_input").set_value("A")
-    at.button[0].click()
-    at.run()
-
-    assert len(at.warning) > 0
-    assert "at least 2 characters" in at.warning[0].value
-
-# Happy Path Test
-def test_frontend_happy_path_selection():
-
-    at = AppTest.from_file("frontend/app.py", default_timeout=10)
-    at.run()
-
-    at.selectbox(key="ex_select").set_value("Squat")
-    at.number_input(key="weight_input").set_value(100.0)
+    # Save and Wait for API Response
+    # Dispatch submit event directly to avoid click interception issues
+    with page.expect_response(lambda response: "/prs" in response.url and response.request.method == "POST") as response_info:
+        page.locator("#log-pr-form").dispatch_event("submit")
     
-    at.button[0].click()
-    at.run()
-
-    assert len(at.error) == 0
-
-# Success message check
-def test_muscle_group_auto_select():
-
-    at = AppTest.from_file("frontend/app.py", default_timeout=10)
-    at.run()
-
-    at.selectbox(key="ex_select").set_value("Deadlift")
-    at.run()
-    assert at.selectbox(key="muscle_select").value == "Back"
+    response = response_info.value
+    assert response.ok
     
-    at.selectbox(key="ex_select").set_value("Bench Press")
-    at.run()
-    assert at.selectbox(key="muscle_select").value == "Chest"
+    # Wait for close
+    expect(modal).to_have_class(re.compile("hidden"))
 
-# Delete Flow Test
-def test_frontend_delete_flow():
-
-    at = AppTest.from_file("frontend/app.py", default_timeout=10)
-    at.run()
-
-    # Create a record to delete
-    at.selectbox(key="ex_select").set_value("Squat")
-    at.number_input(key="weight_input").set_value(999.0)
-    at.button[0].click()
-    at.run()
-
-    # Find the record in the delete dropdown using the key
-    delete_box = at.selectbox(key="manage_pr_select")
+    # 2. VERIFY IN HISTORY
+    page.click("#nav-history")
     
-    found_option = None
-    for option in delete_box.options:
-        if "Squat" in option and "999.0kg" in option:
-            found_option = option
-            break
-            
-    assert found_option is not None, "Created record not found in delete list"
+    # 3. FILTER
+    page.fill("#history-search", exercise_name)
+    
+    # Find card
+    target_card = page.locator("#history-list-container .glass-card").filter(has_text=f"{unique_weight}kg")
+    expect(target_card).to_be_visible()
 
-    # Select and Delete
-    delete_box.set_value(found_option)
+    # 4. DELETE
+    # Click delete button
+    target_card.locator("button[title='Delete']").click()
     
-    # Select "Delete" action
-    radio_btn = [r for r in at.radio if r.label == "Action"][0]
-    radio_btn.set_value("Delete")
+    # Confirm
+    delete_modal = page.locator("#delete-modal")
+    expect(delete_modal).not_to_have_class(re.compile("hidden"))
+    page.wait_for_timeout(500) # Wait for animation
     
-    at.run()
-    
-    # Find the delete button and click it
-    delete_btn = [b for b in at.button if b.label == "Delete Selected"][0]
-    delete_btn.click()
-    at.run()
+    with page.expect_response(lambda response: "/prs" in response.url and response.request.method == "DELETE") as delete_response_info:
+        page.click("#btn-confirm-delete")
+        
+    assert delete_response_info.value.ok
 
-    # Verify Success
-    assert len(at.success) > 0
-    assert "deleted successfully" in at.success[0].value
+    # 5. VERIFY DELETION
+    expect(delete_modal).to_have_class(re.compile("hidden"))
+    expect(target_card).to_have_count(0)

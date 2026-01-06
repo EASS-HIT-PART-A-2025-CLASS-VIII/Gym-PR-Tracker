@@ -1,0 +1,45 @@
+<!-- HISTORY VIEW -->
+<div id="history-view" class="hidden animate-fade-in-up">
+    <!-- History Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+            <div class="flex items-center gap-2 mb-1">
+                <button id="btn-back-dashboard" class="md:hidden text-gray-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </button>
+                <h1 class="text-2xl md:text-3xl font-heading font-bold text-white">All Records</h1>
+            </div>
+            <p class="text-gray-400 text-sm">Full history of your personal bests.</p>
+        </div>
+
+        <!-- Search & Sort Controls -->
+        <div class="flex flex-col sm:flex-row gap-3">
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="material-symbols-outlined text-gray-500 text-lg">search</span>
+                </span>
+                <input type="text" id="history-search" placeholder="Search exercise..."
+                    class="bg-surface-dark border border-white/10 text-white text-sm rounded-xl pl-10 pr-4 py-2.5 focus:outline-none focus:border-primary/50 transition-colors w-full sm:w-64">
+            </div>
+
+            <div class="relative">
+                <select id="history-sort"
+                    class="appearance-none bg-surface-dark border border-white/10 text-white text-sm rounded-xl pl-4 pr-10 py-2.5 focus:outline-none focus:border-primary/50 transition-colors cursor-pointer w-full sm:w-auto">
+                    <option value="date_desc">Date (Newest)</option>
+                    <option value="date_asc">Date (Oldest)</option>
+                    <option value="weight_desc">Weight (Highest)</option>
+                    <option value="weight_asc">Weight (Lowest)</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
+                    <span class="material-symbols-outlined text-sm">expand_more</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History List -->
+    <div id="history-list-container" class="space-y-3">
+        <!-- Populated by JS -->
+        <div class="text-center py-10 text-gray-500">Loading history...</div>
+    </div>
+</div>

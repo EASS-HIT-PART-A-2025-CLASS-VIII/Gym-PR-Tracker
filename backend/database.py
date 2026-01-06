@@ -11,7 +11,7 @@ engine = create_engine(sqlite_url, connect_args={"check_same_thread": False})
 
 def create_db_and_tables():
     print("STARTING DB SETUP...") 
-    from app.models import PR
+    from backend.models import PR
     print(f"Model imported. Table name should be: {PR.__tablename__}")
 
     SQLModel.metadata.create_all(engine)

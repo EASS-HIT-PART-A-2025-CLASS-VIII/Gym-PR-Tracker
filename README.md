@@ -1,7 +1,7 @@
 # Gym PR Tracker 💪
 
 A full-stack application for tracking personal gym records (PRs).
-Built with **FastAPI** (Backend) and **Streamlit** (Frontend).
+Built with **FastAPI** (Backend) and **Vanilla JS/TailwindCSS** (Frontend).
 
 ## 🚀 Features
 
@@ -17,9 +17,10 @@ Built with **FastAPI** (Backend) and **Streamlit** (Frontend).
 - **Add Records:** Simple form to log new PRs instantly.
 - **Visual Analytics:**
   - **Muscle Distribution:** Pie chart showing workout focus by muscle group.
-  - **Strength Progress:** Line chart tracking weight progression over time per exercise.
+  - **Milestones:** Unlock achievements based on your progress (e.g., "100kg Club").
+  - **Daily Motivation:** Random motivational quotes to keep you inspired.
 - **Data Filtering:** Filter records by exercise name 
-- **Bonus:** Automated interface testing.
+
 
 ## 📂 Project Structure
 
@@ -30,11 +31,12 @@ Built with **FastAPI** (Backend) and **Streamlit** (Frontend).
 │   ├── repository.py    # Database access layer (CRUD)
 │   └── database.py      # Database connection & setup
 ├── frontend/
-│   ├── app.py           # Streamlit dashboard entry point
-│   └── api_client.py    # Client to communicate with Backend API
+│   ├── index.html       # Landing page (Dashboard)
+│   ├── js/              # Frontend Logic (API calls, UI, Charts)
+│   └── css/             # Styles
 ├── tests/
 │   ├── test_main.py     # Backend API tests
-│   └── test_frontend.py # Frontend UI tests
+│   └── test_frontend.py # Frontend UI tests (Playwright)
 ├── init_db.py           # Database initialization script
 ├── docker-compose.yml   # Docker configuration
 └── pyproject.toml       # Python dependencies & configuration
@@ -66,19 +68,15 @@ Built with **FastAPI** (Backend) and **Streamlit** (Frontend).
 
 ## 🖥️ How to Run
 
-To use the application, you need to run both the Backend and the Frontend in separate terminals.
+To use the application, you need to run the Uvicorn server, which serves both the API and the Frontend.
 
-1. **Start the Backend** (Terminal 1)
-   This starts the FastAPI server which handles the data.
+1. **Start the App**
    ```bash
-   uv run uvicorn app.main:app --reload
+   uv run uvicorn backend.main:app --reload
    ```
 
-2. **Start the Frontend** (Terminal 2)
-   This starts the Streamlit dashboard.
-   ```bash
-   uv run streamlit run frontend/app.py
-   ```
+2. **Access the App**
+   Open your browser and navigate to: http://localhost:8000
 
 ## 🐳 Run with Docker
 
@@ -90,7 +88,8 @@ Alternatively, you can run the entire stack using Docker Compose:
    ```
 
 2. **Access the App**:
-   - Frontend: http://localhost:8501
+   - Web Dashboard: http://localhost:8000
+
    - Backend Docs: http://localhost:8000/docs
 
 ## 🧪 How to Test
