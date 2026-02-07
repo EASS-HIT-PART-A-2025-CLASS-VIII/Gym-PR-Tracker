@@ -1,0 +1,130 @@
+.container {
+  padding: 20px 0;
+}
+
+.header {
+  font-size: 2.5em;
+  text-transform: uppercase;
+  word-spacing: 0.3em;
+  margin-bottom: 30px;
+  text-align: left;
+  letter-spacing: -1px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
+  transition: transform 0.2s;
+  opacity: 0.6;
+}
+
+.cardUnlocked {
+  background-color: #162e1d;
+  border-color: var(--primary-color);
+  opacity: 1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconContainer {
+  background-color: #333;
+  padding: 10px;
+  border-radius: 10px;
+  color: #888;
+}
+
+.iconContainerUnlocked {
+  background-color: var(--primary-color);
+  color: #000;
+}
+
+.statusContainer {
+  text-align: right;
+}
+
+.unlockedBadge {
+  font-size: 0.7em;
+  background-color: rgba(163, 230, 53, 0.2);
+  color: var(--primary-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.unlockedDate {
+  font-size: 0.6em;
+  color: #888;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.titleUnlocked {
+  color: #fff;
+}
+
+.description {
+  margin: 5px 0 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.descriptionUnlocked {
+  color: #aaa;
+}
+
+.progressContainer {
+  margin-top: auto;
+}
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
+  margin-bottom: 5px;
+  color: #888;
+}
+
+.progressLabelUnlocked {
+  color: var(--primary-color);
+}
+
+.progressBarBg {
+  height: 6px;
+  background-color: #000;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: #888;
+  border-radius: 3px;
+  transition: width 0.5s ease-out;
+}
+
+.progressBarFillUnlocked {
+  background-color: var(--primary-color);
+}

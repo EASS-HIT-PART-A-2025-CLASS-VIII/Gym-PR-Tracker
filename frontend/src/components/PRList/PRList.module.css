@@ -1,0 +1,61 @@
+.card {
+  margin-top: 20px;
+}
+
+.header {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  word-spacing: 0.3em;
+}
+
+.searchContainer {
+  margin-bottom: 20px;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+}
+
+.emptyIcon {
+  opacity: 0.2;
+  margin-bottom: 10px;
+}
+
+.noMatches {
+  color: #888;
+  font-style: italic;
+}
+
+.showMoreContainer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.showMoreButton {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.showMoreButton:hover {
+  background-color: var(--primary-color);
+  color: black;
+}

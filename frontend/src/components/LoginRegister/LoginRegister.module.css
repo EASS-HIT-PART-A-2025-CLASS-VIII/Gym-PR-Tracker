@@ -1,0 +1,62 @@
+.container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 40px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.error {
+  color: #ff4d4d;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.submitButton {
+  margin-top: 10px;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.switchText {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--text-secondary);
+}
+
+.switchButton {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0;
+  margin-left: 5px;
+}

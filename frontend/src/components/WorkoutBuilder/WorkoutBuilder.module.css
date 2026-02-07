@@ -1,0 +1,352 @@
+.container {
+  padding: 30px;
+  color: white;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h2 {
+  font-size: 2.5em;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.header p {
+  color: #888;
+  font-size: 1.1em;
+}
+
+.formCard {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.formGroup {
+  margin-bottom: 25px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.select,
+.input {
+  width: 100%;
+  padding: 12px;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Standardize container to match select inputs */
+.sliderContainer {
+  width: 100%;
+  padding: 12px;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.range {
+  width: 100%;
+  height: 6px;
+  background: #333;
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  margin: 10px 0 15px 0;
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    transform 0.1s,
+    box-shadow 0.2s;
+  margin-top: -9px;
+}
+
+.range::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin-top: -5px;
+}
+
+.sliderLabel {
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.sliderLabel:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.activeLabel {
+  color: black;
+  background: var(--primary-color);
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+.rangeValue {
+  text-align: right;
+  color: #888;
+  margin-top: 5px;
+  font-size: 0.9em;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary-color);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+  text-transform: uppercase;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background-color: #64ffda;
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.resultContainer {
+  margin-top: 40px;
+  animation: slideUp 0.6s ease-out;
+}
+
+.coachTip {
+  background: rgba(100, 255, 218, 0.1);
+  border-left: 4px solid var(--primary-color);
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 0 8px 8px 0;
+}
+
+.coachTip h3 {
+  color: var(--primary-color);
+  margin-top: 0;
+}
+
+.coachTip p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.dayCard {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 25px;
+  border: 1px solid #333;
+  margin-bottom: 20px;
+}
+
+.dayTitle {
+  font-size: 1.5em;
+  color: white;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.focusBadge {
+  background: #333;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.6em;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.exerciseList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.exerciseItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #222;
+  border-radius: 8px;
+}
+
+.exerciseName {
+  font-weight: bold;
+  color: white;
+}
+
+.exerciseDetails {
+  text-align: right;
+}
+
+.exerciseSetRep {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.exerciseNotes {
+  font-size: 1rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.actionButtons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.resetButton,
+.printButton {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resetButton {
+  background: #333;
+  color: #ccc;
+}
+
+.printButton {
+  background: var(--primary-color);
+  color: black;
+}
+
+.resetButton:hover,
+.printButton:hover {
+  opacity: 0.9;
+}
+
+.printableArea {
+  background: #121212;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+@media print {
+  .printableArea {
+    background: white;
+    color: black;
+    padding: 0;
+  }
+
+  .dayCard {
+    background: white;
+    border: 1px solid #ddd;
+    color: black;
+    break-inside: avoid;
+  }
+
+  .dayTitle {
+    color: black;
+    border-bottom: 2px solid #000;
+  }
+
+  .exerciseName {
+    color: black;
+  }
+
+  .exerciseItem {
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+  }
+
+  .coachTip {
+    border-left: 4px solid black;
+    background: #f0f0f0;
+    color: black;
+  }
+
+  .coachTip h3 {
+    color: black;
+  }
+}

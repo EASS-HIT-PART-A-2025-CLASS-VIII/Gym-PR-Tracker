@@ -1,87 +1,92 @@
-
 # Gym PR Tracker 💪
 
-A backend microservice for tracking personal gym records (PRs), built with **FastAPI**.
+A full-stack application for tracking personal gym records (PRs).
 
-## 🚀 Features
+- **Backend**: FastAPI (Python)
+- **Frontend**: React (TypeScript)
 
-- **CRUD Operations:** Create, Read, Update, and Delete personal records.
-- **Data Validation:** Robust validation using **Pydantic**.
-- **Architecture:** Clean separation of concerns (Models, Repository, Endpoints).
-- **Testing:** Comprehensive test suite using **pytest**.
-- **Containerization:** Fully Dockerized for easy deployment.
-- **Developer Experience:** Includes a `.http` file for quick testing in VS Code.
+## ✨ Key Features
+
+### 🏋️‍♂️ Application
+
+- **PR Tracking**: Log and visualize your personal records for any exercise.
+- **Dynamic Milestones**: Automatically detect and celebrate new achievements.
+- **AI Workout Builder**: Generate custom workout plans specific to your goals.
+- **User Accounts**: Secure registration and login to keep your data private.
+- **Responsive UI**: Modern interface built with React.
+
+### 🛠️ Technical Highlights
+
+- **Backend**: **FastAPI** with **Pydantic** for robust validation.
+- **Frontend**: **React** with **TypeScript** & **Vite**.
+- **Architecture**: Clean separation of concerns (Models, Repository, Endpoints).
+- **Testing**: Comprehensive test suites (**Pytest** & **Vitest**).
+- **Deployment**: Fully Dockerized with **Docker Compose** orchestration.
 
 ## 🛠️ Prerequisites
 
 - Python 3.12+
-- uv
+- Node.js & npm (for Frontend)
+- uv (for Backend)
 - Docker (Optional)
 
-## 📥 Installation
+## ⚡ Quick Start (Running Side-by-Side)
 
-1. Clone the repository:
-```bash
-git clone https://github.com/EASS-HIT-PART-A-2025-CLASS-VIII/gym-pr-tracker.git
-cd gym-pr-tracker
-```
-2. Initialize the environment and install dependencies using uv:
+To run the full application, you will need **two separate terminal windows**.
+
+**Terminal 1 (Backend):**
 
 ```bash
+cd backend
 uv sync
-```
-
-
-## 🏃‍♂️ Running Locally
-
-Start the development server:
-
-```bash
 uv run fastapi dev app/main.py
 ```
 
-The API will be available at:
-
-  - **Swagger UI (Interactive Docs):** http://127.0.0.1:8000/docs
-
-
-## 🐳 Running with Docker
-
-You can also run the application inside a Docker container:
-
-1.  **Build the image:**
-
-    ```bash
-    docker build -t gym-pr-tracker .
-    ```
-
-2.  **Run the container:**
-
-    ```bash
-    docker run -p 8000:8000 gym-pr-tracker
-    ```
-
-Access the docs at: http://localhost:8000/docs
-
-## 🧪 Running Tests
-
-Execute the automated test suite to verify functionality:
+**Terminal 2 (Frontend):**
 
 ```bash
-uv run pytest
+cd frontend
+npm install
+npm run dev
 ```
 
-## 📂 Project Structure
+**Access the Application:**
 
-| File | Description |
-|------|-------------|
-| `main.py` | The entry point of the application, defining API endpoints. |
-| `models.py` | Pydantic data schemas for validation. |
-| `repository.py` | Data persistence layer (In-Memory implementation). |
-| `tests/` | Contains `test_main.py` with  tests. |
-| `Dockerfile` | Configuration for building the Docker image. |
-| `requests.http` | Bonus file for testing API requests directly in VS Code. |
+- Frontend: http://localhost:5173
+- Backend API Docs: http://127.0.0.1:8000/docs
 
------
+**Running Tests:**
 
+```bash
+# Backend
+cd backend
+uv run pytest
 
+# Frontend
+cd frontend
+npm test
+```
+
+## 🐳 Docker Stack
+
+To launch the full microservices stack (API, Redis, Worker, Interface):
+
+```bash
+docker compose up --build
+```
+
+See the **Compose Runbook** section below for detailed orchestration notes.
+
+---
+
+## 📚 Documentation
+
+For detailed technical notes, including:
+
+- **Microservices Orchestration**
+- **Security Baseline & Secret Rotation**
+- **Async Telemetry (Refresher)**
+- **AI Assistance Report**
+- **Compose Runbook**
+
+👉 Please see [docs/EX3-notes.md](docs/EX3-notes.md).

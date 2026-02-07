@@ -1,14 +1,32 @@
-# Ignore git 
+# Git
 .git
+.gitignore
 
-# Ignore local virtual environment 
+# Environment
+.env
 .venv
-
-# Ignore Python cache files
-__pycache__
+venv/
+__pycache__/
 *.pyc
 
-# Ignore files not needed in production
+# Node
+node_modules/
+frontend/node_modules/
+npm-debug.log
+
+# Build Outputs
+dist/
+build/
+coverage/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+docs/
 README.md
-requests.http
-tests

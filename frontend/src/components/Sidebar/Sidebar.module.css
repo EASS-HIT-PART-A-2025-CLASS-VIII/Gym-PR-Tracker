@@ -1,0 +1,101 @@
+.username {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background-color: #111;
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.logoContainer {
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.logoHighlight {
+  color: #fff;
+}
+
+.nav {
+  flex: 1;
+}
+
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menuButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: none;
+  color: #888;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  cursor: pointer;
+  text-align: left;
+}
+
+.menuButton:hover {
+  background-color: #1a1a1a;
+  color: var(--primary-color);
+}
+
+.logoutContainer {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+}
+
+.logoutButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: none;
+  color: #666;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+
+.logoutButton:hover {
+  color: #ff4d4d;
+  background-color: rgba(255, 77, 77, 0.1);
+}

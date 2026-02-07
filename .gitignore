@@ -12,3 +12,14 @@ wheels/
 
 #Db 
 *.db
+
+# Environment Variables
+.env
+
+# Misc
+*_output.txt
+*.log
+coverage/
+.vscode/
+.idea/
+.DS_Store
