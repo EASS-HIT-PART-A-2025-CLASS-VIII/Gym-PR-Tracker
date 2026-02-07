@@ -2,7 +2,7 @@ import asyncio
 import sys
 import os
 
-# Add the backend directory to sys.path to allow imports from app
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.db import init_db, get_session, engine
@@ -15,7 +15,7 @@ async def main():
     print("Initializing database...")
     await init_db()
 
-    # Create a session manually since get_session is a dependency generator
+
     from sqlalchemy.orm import sessionmaker
     from sqlmodel.ext.asyncio.session import AsyncSession
     
@@ -25,8 +25,7 @@ async def main():
 
     async with async_session() as session:
         user_repo = UserRepository(session)
-        
-        # Check if test user exists
+
         username = "testuser"
         user = await user_repo.get_by_username(username)
         
