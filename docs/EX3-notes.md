@@ -57,6 +57,12 @@ This project was architected and built with the help of **Antigravity**.
 - **Design:** AI helped plan the microservices structure.
 - **Debugging:** AI assisted in fixing React state issues and standardizing the API.
 
+- ### ✅ Local Verification Process
+To ensure code quality and correctness, all AI-generated code went through a strict verification process:
+1.  **Manual Review:** Every snippet was reviewed for logic errors and security vulnerabilities (e.g., ensuring API keys are not hardcoded).
+2.  **Testing:** Ran `pytest` to verify backend logic and edge cases (especially for the AI integration).
+3.  **Live Debugging:** Verified the end-to-end flow locally (Browser -> API -> AI Service -> OpenAI) using the manual testing script and UI interactions.
+
 ---
 
 ## 📘 5. Operational Runbook
