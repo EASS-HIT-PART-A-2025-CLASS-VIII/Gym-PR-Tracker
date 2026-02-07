@@ -67,6 +67,18 @@ cd frontend
 npm test
 ```
 
+## 🌱 Database Seeding
+
+To populate the database with initial test data (User + PRs):
+
+```bash
+cd backend
+# Using uv (recommended)
+uv run python scripts/seed.py
+```
+
+This will create a user `testuser` (password: `password123`) and some sample PRs.
+
 ## 🐳 Docker Stack
 
 To launch the full microservices stack (API, Redis, Worker, Interface):
